@@ -9,6 +9,10 @@ class pandorafms (
   $console_ensure = 'installed',
   $service_ensure = 'running',
   $service_enable = true,
+  $db_name        = 'pandora',
+  $db_username    = 'pandora',
+  $db_password    = undef,
+  $db_host        = 'localhost',
 ) {
   anchor { '::pandorafms::server::begin': } ->
   class  { '::pandorafms::server::package': } ->
