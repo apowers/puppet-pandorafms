@@ -1,0 +1,122 @@
+#############################################################################
+# Pandora FMS Server Parameters
+# Pandora FMS, the Flexible Monitoring System.
+# Version 5.0SP3
+# Licensed under GPL license v2,
+# (c) 2003-2013 Artica Soluciones Tecnologicas
+# http://www.pandorafms.com
+# Please change it for your setup needs
+#############################################################################
+
+# Working Directories
+incomingdir   /var/spool/pandora/data_in
+log_file      /var/log/pandora/pandora_server.log
+snmp_logfile  /var/log/pandora/pandora_snmptrap.log
+errorlog_file /var/log/pandora/pandora_server.error
+event_file    /var/log/pandora/pandora_events.txt
+plugin_exec   /usr/bin/timeout
+xprobe2       /usr/bin/xprobe2
+nmap          /usr/bin/nmap
+snmpget       /usr/bin/snmpget
+
+# Database Settings
+dbengine      postgresql
+dbport        5432
+dbname        <%= @db_name %>
+dbuser        <%= @db_username %>
+dbpass        <%= @db_password %>
+dbhost        <%= @db_host %>
+
+# Server Settings
+servername    <%= @fqdn %>
+daemon        1
+verbosity     1
+update_parent 0
+master        <%= @master ? "1" : "0" %>
+snmpconsole   1
+snmp_ignore_authfailure 1
+snmp_pdu_address 0
+networkserver 1
+dataserver    1
+reconserver   1
+pluginserver  1
+predictionserver 0
+wmiserver     0
+wmi_timeout   10
+wmi_threads   1
+network_timeout 5
+server_keepalive 45
+server_threshold 5
+network_threads 3
+icmp_checks   1
+tcp_checks    1
+tcp_timeout   30
+snmp_checks   1
+snmp_timeout  5
+snmp_proc_deadresponse 1
+plugin_threads 1
+plugin_timeout 15
+recon_threads 1
+dataserver_threads 1
+dataserver_lifo 0
+event_auto_validation 1
+# snmp_storm_protection 10
+# snmp_storm_timeout 600
+
+# Mail Settings
+mta_address localhost
+mta_port    25
+#mta_user   myuser@mydomain.com
+#mta_pass   mypassword
+#mta_auth   LOGIN
+mta_from    SBRI Pandora FMS <pandora@<%= @domain %>>
+mail_in_separate 1
+
+# Clients and Monitoring
+autocreate_group 2
+autocreate  1
+max_log_size 65536
+max_queue_files 500
+use_xml_timestamp 1
+# auto_restart 86400
+# restart   0
+# restart_delay 60
+# activate_gis 0
+# location_error 50
+# recon_reverse_geolocation_mode disabled
+# recon_reverse_geolocation_file /usr/local/share/GeoIP/GeoIPCity.dat
+# recon_location_scatter_radius 1000
+self_monitoring 1
+# update_parent 1
+# google_maps_description 0
+# openstreetmaps_description 0
+# web_engine curl
+event_expiry_time 0
+event_expiry_window 86400
+
+# Default texts for some events. The macros _module_ and _data_ are supported.
+text_going_down_normal Service '_module_' is going to NORMAL (_data_)
+text_going_up_critical Service '_module_' is going to CRITICAL (_data_)
+text_going_up_warning Service '_module_' is going to WARNING (_data_)
+text_going_down_warning Service '_module_' is going to WARNING (_data_)
+text_going_unknown Service '_module_' is going to UNKNOWN
+
+
+# Enterprise Settings
+braa /usr/bin/braa
+braa_retries 3
+webserver 1
+web_threads 1
+inventoryserver 1
+inventory_threads 1
+exportserver 0
+export_threads 1
+eventserver 0
+event_window 3600
+icmpserver 0
+icmp_threads 2
+snmpserver 0
+snmp_threads 2
+block_size 15
+policy_manager 1
+event_replication 0
