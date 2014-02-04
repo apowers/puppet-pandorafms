@@ -12,6 +12,6 @@ class pandorafms (
   anchor { "${module_name}::begin": } ->
   class {"${module_name}::package": } ->
   class {"${module_name}::config": } ~>
-  class {"${module_name}::service": } ~>
+  class {"${module_name}::service": } ->
   anchor { "${module_name}::end": }
 }
