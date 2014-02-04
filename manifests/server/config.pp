@@ -5,11 +5,11 @@
 class pandorafms::config (
   $ensure       = $pandorafms::config_ensure,
   $options      = $pandorafms::config_options,
+  $db_name      = $pandorafms::db_name,
+  $db_username  = $pandorafms::db_username,
+  $db_password  = $pandorafms::db_password,
+  $db_host      = $pandorafms::db_host,
   $config_file  = '/etc/pandora/pandora_server.conf',
-  $db_name      = 'pandora',
-  $db_username  = 'pandora',
-  $db_password  = undef,
-  $db_host      = 'localhost',
   $master       = true,
 ) {
   file { $config_file:
