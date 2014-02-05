@@ -2,7 +2,7 @@
 #
 # Full description of class pandorafms is in the README.
 #
-class pandorafms::package (
+class pandorafms::server::package (
   $ensure       = $pandorafms::console_ensure,
   $package_name = 'pandorafms-console'
 ) {

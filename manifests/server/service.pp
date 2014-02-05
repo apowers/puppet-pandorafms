@@ -2,7 +2,7 @@
 #
 # Full description of class pandorafms is in the README.
 #
-class pandorafms::service (
+class pandorafms::server::service (
   $ensure   = $pandorafms::service_ensure,
   $enable   = $pandorafms::service_enable,
   $service  = 'pandora_server'

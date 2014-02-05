@@ -2,7 +2,7 @@
 #
 # Full description of class pandorafms is in the README.
 #
-class pandorafms::config (
+class pandorafms::server::config (
   $ensure       = $pandorafms::config_ensure,
   $options      = $pandorafms::config_options,
   $db_name      = $pandorafms::db_name,
