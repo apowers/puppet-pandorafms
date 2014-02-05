@@ -2,7 +2,7 @@
 #
 # Full description of class pandorafms is in the README.
 #
-class pandorafms (
+class pandorafms::server (
   $config_ensure  = 'present',
   $config_options = hash([]),
   $package_ensure = 'installed',
