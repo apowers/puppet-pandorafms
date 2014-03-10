@@ -5,10 +5,9 @@
 class pandorafms::service (
   $ensure       = $pandorafms::service_ensure,
   $enable       = $pandorafms::service_enable,
-  $service_name = 'pandora_agent_daemon',
-#  $service_name = 'pandora-agent', # for ubuntu package
+  $service_name = $pandorafms::service_name,
 ) {
-  service { $pandorafms::params::service_name:
+  service { $service_name:
     ensure => $ensure,
     enable => $enable,
   }

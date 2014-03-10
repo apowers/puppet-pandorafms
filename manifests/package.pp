@@ -4,10 +4,9 @@
 #
 class pandorafms::package (
   $ensure       = $pandorafms::package_ensure,
-  $package_name = 'pandorafms-agent-unix',
-#  $package_name = 'pandorafms-agent', # for Ubuntu package
+  $package_name = $pandorafms::package_name,
 ) {
-  package { $pandorafms::params::package_name:
+  package { $package_name :
     ensure => $ensure,
   }
 }

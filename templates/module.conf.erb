@@ -1,0 +1,7 @@
+# This file is managed by Puppet.
+
+module_begin
+module_name <%= @title %>
+<% @options.sort.each do |option,value| %><%= option %> <%= value %>
+<% end %>
+module_end
