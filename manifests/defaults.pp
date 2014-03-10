@@ -9,7 +9,7 @@ class pandorafms::defaults {
     default  => fail('unsupported platform')
   }
 
-  $module_dir   = "${config_directory}/modules.d"
+  $module_directory = "${config_directory}/modules.d"
 
   $package_name = $::osfamily ? {
     'Debian' => 'pandorafms-agent',
