@@ -78,29 +78,18 @@ autocreate  1
 max_log_size 65536
 max_queue_files 500
 use_xml_timestamp 1
-# auto_restart 86400
-# restart   0
-# restart_delay 60
-# activate_gis 0
-# location_error 50
-# recon_reverse_geolocation_mode disabled
-# recon_reverse_geolocation_file /usr/local/share/GeoIP/GeoIPCity.dat
-# recon_location_scatter_radius 1000
 self_monitoring 1
-# update_parent 1
-# google_maps_description 0
-# openstreetmaps_description 0
-# web_engine curl
+update_parent 1
+web_engine curl
 event_expiry_time 0
 event_expiry_window 86400
 
 # Default texts for some events. The macros _module_ and _data_ are supported.
-text_going_down_normal Service '_module_' is going to NORMAL (_data_)
-text_going_up_critical Service '_module_' is going to CRITICAL (_data_)
-text_going_up_warning Service '_module_' is going to WARNING (_data_)
-text_going_down_warning Service '_module_' is going to WARNING (_data_)
-text_going_unknown Service '_module_' is going to UNKNOWN
-
+text_going_down_normal Service '_module_' is NORMAL (_data_)
+text_going_up_critical Service '_module_' is CRITICAL (_data_)
+text_going_up_warning Service '_module_' is WARNING (_data_)
+text_going_down_warning Service '_module_' is WARNING (_data_)
+text_going_unknown Service '_module_' is UNKNOWN
 
 # Enterprise Settings
 braa /usr/bin/braa
@@ -120,3 +109,7 @@ snmp_threads 2
 block_size 15
 policy_manager 1
 event_replication 0
+
+# Additional Options
+<% @options.sort.each do |option,value| %>
+<%= option %> <%= value %><% end %>

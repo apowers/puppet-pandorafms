@@ -3,15 +3,23 @@
 # Full description of class pandorafms is in the README.
 #
 class pandorafms (
+  $master_server  = undef,
   $config_ensure  = 'present',
   $config_options = hash([]),
   $package_ensure = 'installed',
   $service_ensure = 'running',
   $service_enable = true,
-) {
-  anchor { "${module_name}::begin": } ->
-  class {"${module_name}::package": } ->
-  class {"${module_name}::config": } ~>
-  class {"${module_name}::service": } ->
-  anchor { "${module_name}::end": }
+  $service_name   = $pandorafms::defaults::service_name,
+  $package_name   = $pandorafms::defaults::package_name,
+  $config_file    = $pandorafms::defaults::config_file,
+  $config_dir     = $pandorafms::defaults::config_directory,
+  $module_dir     = $pandorafms::defaults::module_directory,
+) inherits pandorafms::defaults {
+
+  anchor {'pandorafms::begin':   } ->
+  class  {'pandorafms::package': } ->
+  class  {'pandorafms::config':  } ~>
+  class  {'pandorafms::service': } ->
+  anchor {'pandorafms::end': }
+
 }
