@@ -20,9 +20,11 @@ define pandorafms::api (
   $other_mode   = 'url_encode_separator_|',
   $return_type  = undef,
   $other_params = undef,
+  $api_log_dir = '/tmp',
 ) {
 
-  ensure_resource (package,'wget',{ ensure => 'installed' } )
+  ensure_resource (package,'curl',{ ensure => 'installed' } )
+  ensure_resource (file,$api_log_dir,{ ensure => 'directory' } )
 
   $api_auth_string  = "apipass=${apipass}&user=${user}&pass=${password}"
   $api_id_string    = "id=${id}&id2=${id2}"
@@ -30,10 +32,11 @@ define pandorafms::api (
 
 #  notify { "/usr/bin/wget -O /tmp/${title} -nc \'${api_uri}?op=${action}&op2=${option}&${api_auth_string}&${api_id_string}&${api_other_string}&${other_params}\'": }
 
+  # API calls return, at least, a two or three digit ID number on success and a text error on fail.
   exec { "pandorafms-api-${title}":
-    command => "/usr/bin/wget -O /tmp/${title} -nc \'${api_uri}?op=${action}&op2=${option}&${api_auth_string}&${api_id_string}&${api_other_string}&${other_params}\'",
-    creates => "/tmp/${title}",
-    require => Package['wget'],
+    command => "/usr/bin/curl -s \'${api_uri}?op=${action}&op2=${option}&${api_auth_string}&${api_id_string}&${api_other_string}&${other_params}\'|/bin/grep -e '[0-9][0-9]'&&echo OK>${api_log_dir}/${title}",
+    creates => "${api_log_dir}/${title}",
+    require => [Package['curl'],File[$api_log_dir]],
   }
 
 }
