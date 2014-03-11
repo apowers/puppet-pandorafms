@@ -32,9 +32,9 @@ define pandorafms::api (
 
 #  notify { "/usr/bin/wget -O /tmp/${title} -nc \'${api_uri}?op=${action}&op2=${option}&${api_auth_string}&${api_id_string}&${api_other_string}&${other_params}\'": }
 
-  # API calls return, at least, a two or three digit ID number on success and a text error on fail.
+  # API calls return, at least, an ID number on success, or "0", and a text error on fail.
   exec { "pandorafms-api-${title}":
-    command => "/usr/bin/curl -s \'${api_uri}?op=${action}&op2=${option}&${api_auth_string}&${api_id_string}&${api_other_string}&${other_params}\'|/bin/grep -e '[0-9][0-9]'&&echo OK>${api_log_dir}/${title}",
+    command => "/usr/bin/curl -s \'${api_uri}?op=${action}&op2=${option}&${api_auth_string}&${api_id_string}&${api_other_string}&${other_params}\'|/bin/grep -e '[0-9]'&&echo OK>${api_log_dir}/${title}",
     creates => "${api_log_dir}/${title}",
     require => [Package['curl'],File[$api_log_dir]],
   }
