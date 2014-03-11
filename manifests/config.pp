@@ -9,6 +9,7 @@ class pandorafms::config (
   $config_file  = $pandorafms::config_file,
   $config_dir   = $pandorafms::config_dir,
   $module_dir   = $pandorafms::module_dir,
+  $interval     = '300',
 ) {
 
   file { "${config_dir}/${config_file}":
