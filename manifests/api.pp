@@ -20,7 +20,7 @@ define pandorafms::api (
   $other_mode   = 'url_encode_separator_|',
   $return_type  = undef,
   $other_params = undef,
-  $api_log_dir = '/tmp',
+  $api_log_dir  = '/tmp',
 ) {
 
   ensure_resource (package,'curl',{ ensure => 'installed' } )
