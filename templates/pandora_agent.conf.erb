@@ -14,7 +14,7 @@ logfile     /var/log/pandora/pandora_agent.log
 include     <%= @module_dir %>/*.conf
 
 agent_name  <%= @fqdn %>
-description <%= @fqdn %>
+description PandoraFMS Agent on <%= @fqdn %>
 address auto
 autotime 1
 interval <%= @interval %>
@@ -23,13 +23,10 @@ udp_server 0
 #udp_server_port 41122
 #udp_server_auth_address 0.0.0.0
 
-# Tentecle/SSH/FTP Client Communication
+# Tentacle/SSH/FTP Client Communication
 encoding   UTF-8
 server_port 41121
 transfer_mode tentacle
-# server_pwd mypassword
-# server_ssl no
-# server_opts
 
 # Agent Startup Options
 delayed_startup 10
