@@ -18,6 +18,7 @@ define pandorafms::module (
     ensure  => $ensure,
     mode    => '0440',
     content => template('pandorafms/module.conf.erb'),
+    require => Class['::pandorafms::config'],
     notify  => Class['::pandorafms::service'],
   }
 
