@@ -23,8 +23,8 @@ define pandorafms::api (
   $api_log_dir  = '/tmp',
 ) {
 
-  ensure_resource (package,'curl',{ ensure => 'installed' } )
-  ensure_resource (file,$api_log_dir,{ ensure => 'directory' } )
+#  ensure_resource (package,'curl',{ ensure => 'installed' } )
+#  ensure_resource (file,$api_log_dir,{ ensure => 'directory' } )
 
   $api_auth_string  = "apipass=${apipass}&user=${user}&pass=${password}"
   $api_id_string    = "id=${id}&id2=${id2}"
